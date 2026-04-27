@@ -4,8 +4,10 @@
  */
 import java.sql.*;
 import Project.ConnectionProvider;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.util.Date;
 /**
  *
  * @author Admin
@@ -152,6 +154,11 @@ public class EmployeePayment extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/search.png"))); // NOI18N
         jButton2.setText("Search");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(531, 49, -1, -1));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -174,6 +181,41 @@ public class EmployeePayment extends javax.swing.JFrame {
         // TODO add your handling code here:
         setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        String mobileNo = jTextField1.getText();
+        SimpleDateFormat dFormat = new SimpleDateFormat("MMM-yyyy");
+        Date date = new Date();
+        String month = dFormat.format(date);
+
+        try {
+            Connection con = ConnectionProvider.getCon();
+            Statement st = con.createStatement();
+
+            ResultSet rs = st.executeQuery("SELECT * FROM employee WHERE mobileNo='"+mobileNo+"' and status='working'");
+
+            if (rs.next()) {
+                jTextField1.setEditable(false);
+                jTextField2.setText(rs.getString(2));
+                jTextField3.setText(rs.getString(5));
+                jTextField4.setText(rs.getString(8));
+                jTextField5.setText(month);
+                jTextField6.setText("10000");
+            } else {
+                JOptionPane.showMessageDialog(null, "Employee not found");
+            }
+            
+            ResultSet rs1 = st.executeQuery("select * from payment inner join employee status='working' and payment.month='"+month+"' and payment.mobileNo='"+mobileNo+"' and employee.mobileNo='"+mobileNo+"' ");
+              
+            if(rs1.next()){
+                
+            }
+                    
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
