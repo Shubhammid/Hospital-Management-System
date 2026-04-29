@@ -174,6 +174,11 @@ public class EmployeePayment extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/clear.png"))); // NOI18N
         jButton4.setText("Clear");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(543, 312, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pages background.jpg"))); // NOI18N
@@ -211,7 +216,7 @@ public class EmployeePayment extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Employee not found");
             }
             
-            ResultSet rs1 = st.executeQuery("select * from payment inner join employee status='working' and payment.month='"+month+"' and payment.mobileNo='"+mobileNo+"' and employee.mobileNo='"+mobileNo+"' ");
+            ResultSet rs1 = st.executeQuery("select * from payment inner join employee status='Working' and payment.month='"+month+"' and payment.mobileNo='"+mobileNo+"' and employee.mobileNo='"+mobileNo+"' ");
               
             if(rs1.next()){
                jButton3.setVisible(false);
@@ -230,10 +235,24 @@ public class EmployeePayment extends javax.swing.JFrame {
         String month = jTextField5.getText();
         String amount = jTextField6.getText();
         try {
-            
+            Connection con = ConnectionProvider.getCon();
+            PreparedStatement ps = con.prepareStatement("insert into payment values(?, ?, ?)");
+            ps.setString(1, mobileNo);
+            ps.setString(2, month);
+            ps.setString(3, amount);
+            ps.executeUpdate();
+            tableDetails();
+            JOptionPane.showMessageDialog(null, "Successfully Updated");
+            clear();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        clear();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
