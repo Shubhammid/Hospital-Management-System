@@ -16,7 +16,7 @@ This application helps manage rooms, students, and their allocation efficiently.
 - Track room status (Booked / Not Booked)
 
 ### 👨‍🎓 Student Management
-- Add new student details
+- Add new student detail
 - Assign available rooms dynamically
 - Auto-fetch only **available rooms**
 - Prevent booking if rooms are full
