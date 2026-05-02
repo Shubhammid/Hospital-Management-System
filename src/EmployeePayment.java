@@ -216,7 +216,7 @@ public class EmployeePayment extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Employee not found");
             }
             
-            ResultSet rs1 = st.executeQuery("select * from payment inner join employee status='Working' and payment.month='"+month+"' and payment.mobileNo='"+mobileNo+"' and employee.mobileNo='"+mobileNo+"' ");
+            ResultSet rs1 = st.executeQuery("select * from payment inner join employee where employee.status='working' and payment.month='"+month+"' and payment.mobileNo='"+mobileNo+"' and employee.mobileNo='"+mobileNo+"'");
               
             if(rs1.next()){
                jButton3.setVisible(false);
