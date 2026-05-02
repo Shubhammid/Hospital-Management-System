@@ -10,13 +10,13 @@ This application helps manage rooms, students, and their allocation efficiently.
 ### 🏠 Room Management
 - Add new rooms
 - Activate / Deactivate room
-- Update room details
+- Update room detail
 - Delete rooms
 - View all rooms in a table
 - Track room status (Booked / Not Booked)
 
 ### 👨‍🎓 Student Management
-- Add new student details
+- Add new student detail
 - Assign available rooms dynamically
 - Auto-fetch only **available rooms**
 - Prevent booking if rooms are full
