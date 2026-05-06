@@ -363,6 +363,7 @@ public class home extends javax.swing.JFrame {
         // TODO add your handling code here:
         jButton11.setForeground(Color.red);
         jButton11.setBackground(new Color(255,255,255));
+        new LeavedEmployee().setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
