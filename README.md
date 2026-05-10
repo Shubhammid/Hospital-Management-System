@@ -5,7 +5,7 @@ This application helps manage rooms, students, and their allocation efficiently.
 
 ---
 
-## 🚀 Features
+## 🚀 Feature
 
 ### 🏠 Room Management
 - Add new rooms
